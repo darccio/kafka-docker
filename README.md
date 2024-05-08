@@ -1,16 +1,14 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/wurstmeister/kafka.svg)](https://hub.docker.com/r/wurstmeister/kafka/)
-[![Docker Stars](https://img.shields.io/docker/stars/wurstmeister/kafka.svg)](https://hub.docker.com/r/wurstmeister/kafka/)
-[![](https://images.microbadger.com/badges/version/wurstmeister/kafka.svg)](https://microbadger.com/images/wurstmeister/kafka "Get your own version badge on microbadger.com")
-[![](https://images.microbadger.com/badges/image/wurstmeister/kafka.svg)](https://microbadger.com/images/wurstmeister/kafka "Get your own image badge on microbadger.com")
-[![Build Status](https://app.travis-ci.com/wurstmeister/kafka-docker.svg?branch=master)](https://app.travis-ci.com/wurstmeister/kafka-docker)
-
+[![Docker Pulls](https://img.shields.io/docker/pulls/darccio/kafka.svg)](https://hub.docker.com/r/darccio/kafka/)
+[![Docker Stars](https://img.shields.io/docker/stars/darccio/kafka.svg)](https://hub.docker.com/r/darccio/kafka/)
+[![](https://images.microbadger.com/badges/version/darccio/kafka.svg)](https://microbadger.com/images/darccio/kafka "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/darccio/kafka.svg)](https://microbadger.com/images/darccio/kafka "Get your own image badge on microbadger.com")
 
 kafka-docker
 ============
 
 Dockerfile for [Apache Kafka](http://kafka.apache.org/)
 
-The image is available directly from [Docker Hub](https://hub.docker.com/r/wurstmeister/kafka/)
+The image is available directly from [Docker Hub](https://hub.docker.com/r/darccio/kafka/)
 
 Tags and releases
 -----------------
@@ -18,7 +16,7 @@ Tags and releases
 All versions of the image are built from the same set of scripts with only minor variations (i.e. certain features are not supported on older versions). The version format mirrors the Kafka format, `<scala version>-<kafka version>`. Initially, all images are built with the recommended version of scala documented on [http://kafka.apache.org/downloads](http://kafka.apache.org/downloads). To list all available tags:
 
 ```
-curl -s https://registry.hub.docker.com/v2/repositories/wurstmeister/kafka/tags\?page_size\=1024 | jq -r '.results[].name' | sort -u | egrep '\d.\d{2}-.*'
+curl -s https://registry.hub.docker.com/v2/repositories/darccio/kafka/tags\?page_size\=1024 | jq -r '.results[].name' | sort -u | egrep '\d.\d{2}-.*'
 ```
 
 Everytime the image is updated, all tags will be pushed with the latest updates. This should allow for greater consistency across tags, as well as any security updates that have been made to the base image.
@@ -34,7 +32,7 @@ Everytime the image is updated, all tags will be pushed with the latest updates.
 ## Pre-Requisites
 
 - install docker-compose [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
-- modify the ```KAFKA_ADVERTISED_HOST_NAME``` in [docker-compose.yml](https://raw.githubusercontent.com/wurstmeister/kafka-docker/master/docker-compose.yml) to match your docker host IP (Note: Do not use localhost or 127.0.0.1 as the host ip if you want to run multiple brokers.)
+- modify the ```KAFKA_ADVERTISED_HOST_NAME``` in [docker-compose.yml](https://raw.githubusercontent.com/darccio/kafka-docker/master/docker-compose.yml) to match your docker host IP (Note: Do not use localhost or 127.0.0.1 as the host ip if you want to run multiple brokers.)
 - if you want to customize any Kafka parameters, simply add them as environment variables in ```docker-compose.yml```, e.g. in order to increase the ```message.max.bytes``` parameter set the environment to ```KAFKA_MESSAGE_MAX_BYTES: 2000000```. To turn off automatic topic creation set ```KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'```
 - Kafka's log4j usage can be customized by adding environment variables prefixed with ```LOG4J_```. These will be mapped to ```log4j.properties```. For example: ```LOG4J_LOGGER_KAFKA_AUTHORIZER_LOGGER=DEBUG, authorizerAppender```
 
@@ -56,7 +54,7 @@ Destroy a cluster:
 
 ## Note
 
-The default ```docker-compose.yml``` should be seen as a starting point. By default each broker will get a new port number and broker id on restart. Depending on your use case this might not be desirable. If you need to use specific ports and broker ids, modify the docker-compose configuration accordingly, e.g. [docker-compose-single-broker.yml](https://github.com/wurstmeister/kafka-docker/blob/master/docker-compose-single-broker.yml):
+The default ```docker-compose.yml``` should be seen as a starting point. By default each broker will get a new port number and broker id on restart. Depending on your use case this might not be desirable. If you need to use specific ports and broker ids, modify the docker-compose configuration accordingly, e.g. [docker-compose-single-broker.yml](https://github.com/darccio/kafka-docker/blob/master/docker-compose-single-broker.yml):
 
 - ```docker-compose -f docker-compose-single-broker.yml up```
 
